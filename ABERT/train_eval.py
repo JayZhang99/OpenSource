@@ -50,8 +50,11 @@ def train(config, model, train_iter, dev_iter, test_iter):
         print('Epoch [{}/{}]'.format(epoch + 1, config.num_epochs))
         for i, (trains, labels) in enumerate(train_iter):
             outputs = model(trains)
+            _,outputs_adv = model(trains,attack=True)
             model.zero_grad()
-            loss = F.cross_entropy(outputs, labels)
+            loss_clean = F.cross_entropy(outputs, labels)
+            loss_adv = F.cross_entropy(outputs_adv,labels)
+            loss = (loss_clean+loss_adv)/2
             loss.backward()
             optimizer.step()
             if total_batch % 100 == 0:
