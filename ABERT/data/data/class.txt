@@ -1,0 +1,6 @@
+Fix
+Feature Addition
+Docs
+Test
+Refactoring
+Environment
