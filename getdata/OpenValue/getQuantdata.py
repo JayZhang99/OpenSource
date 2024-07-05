@@ -16,7 +16,6 @@ class commit(object):
         random_numbers=[random.randint(0,repo_size) for _ in range(100)]
         for i in random_numbers:
             commit_hash_list.append(T[i].hash)
-            commit_score.append(random.randint(1,5))
         df = pd.DataFrame({'commit_hash': commit_hash_list, 'score': commit_score})
         df.to_csv(dataset_path,index=False)
 def start():
